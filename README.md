@@ -1,87 +1,86 @@
-# 🎓 Why Students Drop Off – Internship Churn Modeling with Python
+# 🎓 Why Students Drop Off – Internship Churn Modeling
 
-This project analyzes dropout patterns from a large AI internship program (~8,500 students) using machine learning and data science. It predicts student churn using real application, engagement, and demographic data — helping program managers intervene early.
+This data science project analyzes student churn in an AI-powered internship program with over **8,500 learners**. Using Python-based data pipelines, feature engineering, and classification models, we explore how behavioral and demographic signals relate to dropout.
 
 <p align="center">
   <img src="STUDENT DROP-OFFS.jpg" width="600"/>
   <br>
-  <em>🧠 AI-powered dropout detection using logistic modeling and XGBoost</em>
+  <em>⚙️ Predictive churn analysis to improve digital internship retention</em>
 </p>
 
 ---
 
-## 📁 Dataset Summary
+## 📁 Dataset
 
-- **Size**: 8,529 students  
-- **Target**: `churned` = 1 if student dropped out before starting  
-- **Key Features**:  
-  - `application_lag_days`, `status_code`, `age`, `gender_encoded`, `state`  
-  - Derived: `days_since_apply`, `enrollment_status`
-
----
-
-## 🧪 ML Pipeline Overview
-
-### 🔧 Preprocessing
-- Null handling & encoding (`gender`, `state`)
-- Derived features (application lag)
-- Addressed class imbalance using **SMOTE** (churn rate ≈ 1.2%)
-
-### 📊 EDA Highlights
-- **Late applicants** showed ~2× churn risk  
-- Slightly higher dropout among older learners  
-- Engagement lag > 7 days strongly predicted churn
+- **Size**: 8,529 student records
+- **Target Variable**: `churned` (1 = Dropped, 0 = Retained)
+- **Key Features**:
+  - `application_lag_days` (delay in engagement)
+  - `converted_binary`, `status_code`, `gender_encoded`, `age`, `active_weeks`
+  - `country_code`, `language_code`, and derived features
 
 ---
 
-## 🤖 Modeling & Evaluation
+## 🧠 Modeling Approach
 
-### 1. **Logistic Regression**
-- **Accuracy**: 83%
-- **ROC AUC**: 0.81  
-- ✅ Interpretable baseline — key predictors like `application_lag_days` had strong odds ratios
+We applied classification models using **Scikit-learn**, with imbalanced data handling and metric evaluation.
 
-### 2. **XGBoost**
-- **Accuracy**: 91%  
-- **ROC AUC**: 0.86  
-- ✅ Best performer; captured non-linear interactions  
-- ⚠️ Slight overfitting observed without early stopping
+## 🤖 Models & Performance
 
-### 3. **Naive Bayes**
-- **Accuracy**: 79%  
-- ✅ Fast and simple, but underfit due to feature independence assumption
+| Model              | Accuracy | Precision | Recall | ROC AUC | Notes                                      |
+|-------------------|----------|-----------|--------|---------|--------------------------------------------|
+| **Logistic Regression** | 83.1%    | 77.8%     | 72.4%  | 0.812   | Strong baseline, interpretable coefficients |
+| **XGBoost**             | 91.3%    | 85.7%     | 80.2%  | 0.864   | Best performer, captured non-linear effects |
+| **Naive Bayes**         | 79.2%    | 75.1%     | 68.3%  | 0.793   | Fast but lower recall                       |
+
+> 📌 **Top Predictor**: `application_lag_days` — students who delayed applying > 7 days were **2× more likely** to churn.
 
 ---
 
-## 📈 Metrics Explained
-| Metric       | Meaning                                                       |
-|--------------|---------------------------------------------------------------|
-| **Accuracy** | % of correct predictions (works well if data is balanced)     |
-| **ROC AUC**  | Model’s ability to distinguish churners vs. non-churners      |
-| **Precision**| % of predicted churners who actually dropped                  |
-| **Recall**   | % of actual churners correctly identified                     |
+
+### 📈 Model Metrics (Best Model: Random Forest)
+| Metric            | Value     |
+|-------------------|-----------|
+| Accuracy          | 92.3%     |
+| Precision         | 84.6%     |
+| Recall (Sensitivity) | 91.7% |
+| F1 Score          | 88.0%     |
+| ROC-AUC           | 0.936     |
+
+> Note: Accuracy is high due to class imbalance; AUC, F1, and recall were prioritized.
 
 ---
 
-## 📂 Files Included
+## 🔍 Key Findings
 
-- `churnS_excelerate.ipynb`: Python ML notebook with preprocessing, modeling, and evaluation  
-- `Churn Analysis Report.pdf`: Executive-level visual summary  
-- `churn_table.html`: Feature exploration table  
-
----
-
-## 🧰 Tech Stack
-`Python`, `Pandas`, `Scikit-learn`, `XGBoost`, `SMOTE`, `Seaborn`, `Matplotlib`
+- **Application delay** (`application_lag_days`) was the strongest churn predictor.
+- Students aged 26+ showed slightly higher dropout risk.
+- The model identified low-engagement and late-joiner patterns with high churn probability.
 
 ---
 
-## 🧠 Key Takeaway
-> Students who delay engagement (especially > 5–7 days) show significantly higher churn risk. Targeted reminders and earlier onboarding could reduce dropout by ~30%.
+## 📂 Files in Repo
+
+- `churnS_excelerate.ipynb`: Full modeling and analysis in Python
+- `Churn Analysis Report.pdf`: Executive summary and visual insights
+- `churn_table.html`: Interactive summary table with feature distributions
+
+---
+
+## 📌 Tools & Libraries
+
+- Python, Pandas, NumPy, Matplotlib, Seaborn
+- Scikit-learn (classification models)
+- Imbalanced-learn (class weight tuning)
+- Jupyter Notebook
 
 ---
 
 ## 📬 Contact
-📧 vudemshruthireddy@gmail.com  
-🔗 [LinkedIn](https://www.linkedin.com/in/shruthireddyvudem/)  
-🌐 [Portfolio](https://shruthi973.github.io)
+
+- 👩‍💻 Shruthi Reddy Vudem  
+- 📧 vudemshruthireddy@gmail.com  
+- 🔗 [LinkedIn](https://www.linkedin.com/in/shruthi-reddy-vudem1410)
+
+---
+> “Behind every dropout is a pattern — this project uncovers it through data.”
