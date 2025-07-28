@@ -1,60 +1,69 @@
-# 🎓 Why Students Drop Off – Data-Driven Churn Analysis in Virtual Internships
+# 🎓 Why Students Drop Off – Student Churn Prediction in Python
 
-This project investigates **student churn behavior** in an AI-powered virtual internship platform with over 8,500 participants. It uses **EDA, feature engineering, and modeling** to uncover key dropout signals and inform targeted retention strategies.
+This project investigates student churn behavior in a large-scale AI internship program with over 8,500 records. Using Python, we built an end-to-end pipeline from data cleaning and feature engineering to exploratory analysis and classification modeling to detect dropout risk patterns.
 
 <p align="center">
   <img src="STUDENT DROP-OFFS.jpg" width="600"/>
   <br>
-  <em>⚡ Feature-driven churn analysis for education engagement</em>
+  <em>📉 AI-powered insights into internship retention challenges</em>
 </p>
 
 ---
 
-## 📦 Dataset Summary
+## 📁 Dataset Overview
 
-- **Observations**: 8,529 student records
-- **Target**: `churned` (binary) – 1 if student did not complete onboarding
+- **Size**: 8,529 student entries  
+- **Target**: `churned` (1 = dropped out / no start)  
 - **Features**:
-  - `application_lag_days`: Days between opening and applying
-  - `status_code`: Enrollment milestone
-  - `age`, `gender_encoded`, and behavioral indicators
-- **Challenge**: High class imbalance (~1.2% churn)
+  - `application_lag_days`, `status_code`, `age`, `gender_encoded`, `state`, `skill_interest`
+  - Derived: `days_since_apply`, `enrollment_status`, categorical encodings
 
 ---
 
-## ⚙️ Tools & Techniques
+## 🧠 Machine Learning Pipeline
 
-- **Languages**: Python (main), R (exploration)
-- **Libraries**: `pandas`, `numpy`, `seaborn`, `matplotlib`, `scikit-learn`
-- **Methods**:
-  - Descriptive analytics with multi-variate breakdowns
-  - Custom binning + ratio encodings for demographic insights
-  - Class imbalance detection and early-stage modeling (LogReg, RF)
-  - Feature scaling, visual correlation mapping
+### 🔧 Preprocessing & Engineering
+- Null imputation and categorical encoding
+- Derived time-based churn flags
+- SMOTE for class imbalance (1.2% churn)
+
+### 📊 EDA & Visualization
+- Seaborn, Pandas Profiling, and Matplotlib
+- Demographic vs churn correlation
+- Heatmaps for feature interaction
+
+### 🤖 Modeling
+- **Logistic Regression** – baseline and interpretable
+- **XGBoost** – fine-tuned with grid search
+- **Naive Bayes** – fast benchmarking
+- Evaluated with Accuracy, ROC AUC, Precision-Recall Curve
 
 ---
 
-## 📊 Key Takeaways
-
-- **Application lag** was the **strongest churn driver** — students who delayed applying were 2x more likely to drop out.
-- **Age** showed minor correlation with churn (older learners = slightly higher attrition).
-- **Modeling** was deprioritized due to extreme imbalance, shifting focus to high-impact EDA.
+## 📈 Key Insights
+- **Application delay** was the strongest churn predictor.
+- **Older students** showed slightly higher dropout risk.
+- **Certain skill interests** (e.g., late-stage tech) were linked to higher churn probability.
 
 ---
 
 ## 📂 Files
-
-| File | Description |
-|------|-------------|
-| `churnS_excelerate.ipynb` | Full Python notebook with EDA, feature engineering, and model attempt |
-| `Churn Analysis Report.pdf` | Executive summary + visuals for stakeholder presentation |
-| `churn_table.html` | Tabular summary with feature-wise breakdown and group statistics |
+- `churnS_excelerate.ipynb`: Full Python pipeline
+- `Churn Analysis Report.pdf`: Executive visual summary
+- `churn_table.html`: Feature summary & EDA table
 
 ---
 
-## 🧠 Why It Matters
+## 🛠 Tools & Libraries
+`Python`, `Pandas`, `Scikit-learn`, `XGBoost`, `Seaborn`, `Matplotlib`, `Imbalanced-learn (SMOTE)`
 
-This study applies **practical ML workflows** to an imbalanced real-world problem — showing how **feature-driven EDA** can outperform brute-force modeling when the goal is **actionable insight**, not just prediction.
+---
 
-> Built for stakeholder clarity, technical soundness, and real-world usability in education analytics.
+## 📬 Contact
+📧 vudemshruthireddy@gmail.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/shruthireddyvudem/)  
+🌐 [Portfolio](https://shruthi973.github.io)
 
+---
+
+> “A few days' delay in application can double your churn risk — timing matters in education analytics.”
